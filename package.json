@@ -1,0 +1,8 @@
+{
+  "name": "blackjack",
+  "description": "A simplistic blackjack game.",
+  "main": "server.js",
+  "dependencies": {
+    "express": "4.11.2"
+  }
+}
