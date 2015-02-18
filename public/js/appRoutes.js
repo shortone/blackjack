@@ -5,5 +5,9 @@ angular.module('appRoutes', [])
   .when('/', {
     templateUrl: 'views/home.html',
     controller: 'HomeController'
+  })
+  .when('/table/:id', {
+    templateUrl: 'views/table.html',
+    controller: 'TableController'
   });
 }]);

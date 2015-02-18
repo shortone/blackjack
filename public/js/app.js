@@ -1,1 +1,1 @@
-angular.module('blackjackApp', ['ngRoute', 'appRoutes', 'HomeCtrl', 'TableService', 'SocketService']);
+angular.module('blackjackApp', ['ngRoute', 'appRoutes', 'HomeCtrl', 'TableCtrl', 'TableService', 'SocketService']);

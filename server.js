@@ -5,9 +5,13 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var mongoose = require('mongoose');
+
 // CONFIGURATIONS
 // ==============================================
 var port = process.env.PORT || 8080;
+
+mongoose.connect('mongodb://localhost/blackjack');
 
 // setup static files location
 app.use(express.static(__dirname + '/public'));

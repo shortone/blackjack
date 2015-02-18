@@ -1,12 +1,9 @@
 angular.module('TableService', [])
-.factory('Table', ['socket', function(socket) {
+.factory('Table', ['$http', function($http) {
 
   return {
     create: function() {
-      return socket.emit('table:create', {}, function(data) {
-        console.log(data);
-        return '123';
-      });
+      return $http.post('/api/tables', {});
     }
   };
 }]);

@@ -2,10 +2,11 @@ angular.module('HomeCtrl', [])
 .controller('HomeController', ['$scope', '$location', 'Table', function($scope, $location, Table) {
 
   $scope.createNewTable = function() {
-    // TODO ask server to create new table
-    var table = Table.create();
-    
-    // TODO redirect the client to the new table page
-    $location.path('/table/' + table.id);
+    var table = Table.create().success(function(data, status, headers, config) {
+      $location.path('/table/' + data._id);
+    }).error(function(data, status, headers, config) {
+      // TODO properly handle error...
+      console.log('error...');
+    });
   };
 }]);
