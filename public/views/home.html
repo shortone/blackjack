@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="jumbotron">
+    <h1>Blackjack</h1>
+    <p>A simplistic game for simple people</p>
+    <p>
+      <div class="row" ng-controller="HomeController">
+        <div class="col-lg-6">
+          <button class="btn btn-primary" ng-click="createNewTable()">Create table</button>
+        </div>
+        <div class="col-lg-6">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <div class="row">
+                <div class="col-lg-8">
+                  <input type="text" class="form-control" placeholder="Table ID"/>
+                </div>
+                <div class="col-lg-2">
+                  <button type="submit" class="btn btn-primary">Join Table</buton>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </p>
+  </div>
+</div>

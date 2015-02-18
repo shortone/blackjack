@@ -2,6 +2,8 @@
 // ==============================================
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 // CONFIGURATIONS
 // ==============================================
@@ -12,12 +14,9 @@ app.use(express.static(__dirname + '/public'));
 
 // ROUTES
 // ==============================================
-app.route('/api').get(function(req, res) {
-  res.json({
-    message: 'This is it!!'
-  });
-});
+require('./app/routes')(app);
+require('./app/sockets')(io);
 
 // START SERVER
 // ==============================================
-app.listen(port);
+http.listen(port);
