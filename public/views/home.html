@@ -5,17 +5,17 @@
     <p>
       <div class="row">
         <div class="col-lg-6">
-          <button class="btn btn-primary" ng-click="createNewTable()">Create table</button>
+          <button class="btn btn-primary" ng-click="createTable()">Create table</button>
         </div>
         <div class="col-lg-6">
-          <form class="form-horizontal">
+          <form class="form-horizontal" novalidate>
             <div class="form-group">
               <div class="row">
                 <div class="col-lg-8">
-                  <input type="text" class="form-control" placeholder="Table ID"/>
+                  <input type="text" class="form-control" ng-model="tableId" placeholder="Table ID"/>
                 </div>
                 <div class="col-lg-2">
-                  <button type="submit" class="btn btn-primary">Join Table</buton>
+                  <button type="submit" ng-click="joinTable()" class="btn btn-primary">Join Table</buton>
                 </div>
               </div>
             </div>

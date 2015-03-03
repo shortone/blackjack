@@ -17,12 +17,16 @@
   <script src="libs/angular/angular.min.js"></script>
   <script src="libs/angular-route/angular-route.min.js"></script>
 
+  <script src="libs/underscore/underscore-min.js"></script>
+
   <!-- Socket.IO -->
   <script src="socket.io/socket.io.js"></script>
 
   <!-- AngularJS custom -->
   <script src="js/services/SocketService.js"></script>
+  <script src="js/services/ShoeService.js"></script>
   <script src="js/services/TableService.js"></script>
+  <script src="js/services/UserService.js"></script>
   <script src="js/controllers/HomeCtrl.js"></script>
   <script src="js/controllers/TableCtrl.js"></script>
   <script src="js/appRoutes.js"></script>
@@ -31,14 +35,5 @@
 </head>
 <body ng-app="blackjackApp">
   <div ng-view></div>
-  <script>
-  var socket = io.connect('http://localhost:8080');
-  socket.on('news', function(data) {
-    console.log(data);
-    socket.emit('my other event', {
-      my: 'data'
-    });
-  });
-  </script>
 </body>
 <html>
