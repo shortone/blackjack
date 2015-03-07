@@ -5,6 +5,33 @@ var Table = require('./models/table');
 module.exports = function(io) {
 
   io.on('connection', function(socket) {
+    socket.on('table:update', function(data) {
+      // initialise the channel to be used during broadcast
+      if (!socket.table) {
+        socket.table = data._id;
+        socket.join(data._id);
+      }
+
+      Table.find({'_id': data._id}, function(err, doc) {
+        if (err) {
+          // TODO properly handle errors
+          return;
+        }
+        var table = doc[0];
+        table.shoe = data.shoe;
+        table.players = data.players;
+        table.dealer = data.dealer;
+        table.save(function(err) {
+          if (err) {
+            // TODO properly handle errors
+            return;
+          }
+          // once the table properly saved, broadcast the updated content to the other members of the table
+          socket.broadcast.to(data._id).emit('table:update', table);
+        });
+        //socket.broadcast.to(table._id).emit('table:console', player.username + ' received ' + pickedCard.name + pickedCard.suit);
+      });
+    });
 
     socket.on('table:get', function(data) {
       socket.table = data.table;

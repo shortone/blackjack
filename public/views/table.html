@@ -2,20 +2,45 @@
   <div class="row">
     <div class="col-lg-4 col-lg-offset-4">
       <div class="panel panel-default">
-        <div class="panel-heading">{{ username }}</div>
+        <div class="panel-heading">{{ dealer.spot }}</div>
         <div class="panel-body">
           <p>
-            Picked cards: {{ pickedCards }}
+            Picked cards: {{ dealer.cards }}
           </p>
-          <div class="row">
-            <div class="col-lg-4">
-              <button class="btn btn-success btn-block" ng-click="getCard()">Get Card</button>
-            </div>
+          <div class="row" ng-show="isDealer()">
             <div class="col-lg-4">
               <button class="btn btn-danger btn-block" ng-click="deal()">Deal</button>
             </div>
             <div class="col-lg-4">
+              <button class="btn btn-success btn-block" ng-click="getCard()">Get Card</button>
+            </div>
+            <div class="col-lg-4">
               <button class="btn btn-default btn-block">Restart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div ng-repeat="player in players">
+      <div class="col-lg-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">{{ player.spot }}</div>
+          <div class="panel-body">
+            <p>
+              Picked cards: <span ng-repeat="card in player.cards">{{ card.name }}{{ card.suit}} </span>
+            </p>
+            <div class="row" ng-show="isPlayer(player.spot)">
+              <div class="col-lg-4">
+                <button class="btn btn-success btn-block" ng-click="getCard()">Get Card</button>
+              </div>
+              <div class="col-lg-4">
+                <button class="btn btn-danger btn-block" ng-click="deal()">Deal</button>
+              </div>
+              <div class="col-lg-4">
+                <button class="btn btn-default btn-block">Restart</button>
+              </div>
             </div>
           </div>
         </div>

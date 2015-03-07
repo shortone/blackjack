@@ -23,7 +23,7 @@ module.exports = function(app) {
       if (err) {
         res.send(err);
       }
-      res.json(_.pick(t, '_id', 'createdAt'));
+      res.json(t);
     });
   });
 

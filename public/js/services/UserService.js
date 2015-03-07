@@ -1,31 +1,26 @@
-angular.module('UserService', []).factory('user', ['$q', 'Table', function($q, Table) {
+angular.module('UserService', []).factory('User', ['$q', function($q) {
 
-  var currentUser = {};
-
-  var createdTables = [];
+  var user = {};
 
   return {
-    createTable: function() {
-      return $q(function(resolve, reject) {
-        Table.create().success(function(data, status, headers, config) {
-          // TODO find a way to initialise the user state
-          resolve(data._id);
-        }).error(function(data, status, headers, config) {
-          // TODO handle error properly
-          console.log('Error: ' + data);
-          reject();
-        });
-      });
+    init: function(table, role) {
+      user.table = table;
+      user.role = role;
     },
-    joinTable: function(tableId) {
-      return $q(function(resolve, reject) {
-        Table.exists(tableId).success(function(data, statatus, headers, config) {
-          resolve(data._id);
-        }).error(function(data, status, headers, config) {
-          console.log('Error: ' + data);
-          reject();
-        });
-      });
+    getName: function() {
+      return user.name;
+    },
+    setName: function(name) {
+      user.name = name;
+    },
+    getRole: function() {
+      return user.role;
+    },
+    getTable: function() {
+      return user.table;
+    },
+    log: function() {
+      console.log(user);
     }
   };
 }]);

@@ -1,10 +1,28 @@
 angular.module('TableCtrl', [])
-.controller('TableController', ['$scope', '$routeParams', 'socket', 'Table', function($scope, $routeParams, socket, Table) {
+.controller('TableController', ['$scope', '$routeParams', 'socket', 'User', 'Table', function($scope, $routeParams, socket, User, Table) {
 
-  $scope.username = '';
-  $scope.cards = [];
+  Table.init($routeParams.id).then(function() {
+    $scope.username = User.getName();
+    $scope.dealer = Table.getDealer();
+    $scope.players = Table.getPlayers();
 
-  Table.join($routeParams.id);
+    $scope.$watch(function() {
+      return Table.getPlayers();
+    }, function(players) {
+      $scope.players = players;
+    });
+  });
+
+  $scope.isDealer = function() {
+    return User.getRole() === Table.RoleEnum.DEALER;
+  };
+
+  $scope.isPlayer = function(spot) {
+    return User.getName() === spot;
+  };
+
+  User.log();
+  Table.log();
 
   socket.on('table:console', function(data) {
     console.log(data);
@@ -17,8 +35,8 @@ angular.module('TableCtrl', [])
   $scope.pickedCards = '';
 
   $scope.deal = function() {
-    socket.emit('table:deal',{});
-  }
+    Table.deal();
+  };
 
   $scope.getCard = function() {
     socket.emit('table:getCard', {});
